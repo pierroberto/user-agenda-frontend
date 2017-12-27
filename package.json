@@ -4,10 +4,13 @@
   "private": true,
   "main": "bin/www",
   "scripts": {
-    "start": "NODE_CONFIG_DIR=./dist/config NODE_ENV=production NODE_PATH=NODE_PATH:./dist/shared:./dist/server node dist/server",
+    "start":
+      "NODE_CONFIG_DIR=./dist/config NODE_ENV=production NODE_PATH=NODE_PATH:./dist/shared:./dist/server node dist/server",
     "start:dev": "NODE_CONFIG_DIR=./src/config nodemon .",
-    "webpack": "NODE_CONFIG_DIR=./src/config NODE_PATH=NODE_PATH:./src/shared:./src/server webpack-dev-server --no-info --config webpack.config.js",
-    "build:webpack": "NODE_ENV=production NODE_PATH=NODE_PATH:./dist/shared:./dist/server webpack --config webpack.config.production.js --progress --profile --color -p",
+    "webpack":
+      "NODE_CONFIG_DIR=./src/config NODE_PATH=NODE_PATH:./src/shared:./src/server webpack-dev-server --no-info --config webpack.config.js",
+    "build:webpack":
+      "NODE_ENV=production NODE_PATH=NODE_PATH:./dist/shared:./dist/server webpack --config webpack.config.production.js --watch --progress --profile --color -p",
     "build:node": "babel -s inline -D src/ -d dist",
     "build": "npm run build:node && npm run build:webpack",
     "lint": "NODE_PATH=NODE_PATH:./src/shared:./src/server  eslint src"
@@ -44,6 +47,8 @@
     "react-notification-system": "^0.2.10",
     "react-redux": "^4.4.5",
     "react-router": "^2.5.1",
+    "react-transition-group": "^1.2.1",
+    "reactstrap": "^4.8.0",
     "redux": "^3.5.2",
     "sass-loader": "^4.0.0",
     "serve-favicon": "*",
@@ -71,7 +76,7 @@
     "eslint-plugin-import": "^1.9.2",
     "eslint-plugin-jsx-a11y": "^1.5.3",
     "eslint-plugin-react": "*",
-    "extract-text-webpack-plugin": "*",
+    "extract-text-webpack-plugin": "^1.0.1",
     "mocha": "*",
     "node-sass": "*",
     "nodemon": "*",
@@ -80,6 +85,6 @@
     "style-loader": "*",
     "toolbox-loader": "*",
     "webpack": "*",
-    "webpack-dev-server": "*"
+    "webpack-dev-server": "^1.9.0"
   }
 }
