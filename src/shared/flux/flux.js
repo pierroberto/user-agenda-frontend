@@ -9,9 +9,11 @@ export class Actions {
   get Home() {
     return new Home.Actions();
   }
+  get SetList() {
+    return new Home.Actions(list);
+  }
 }
 
 export function reducers(previousState, action) {
-  return previousState
-    .update('home', state => Home.reducers(state, action));
+  return previousState.update('home', state => Home.reducers(state, action));
 }

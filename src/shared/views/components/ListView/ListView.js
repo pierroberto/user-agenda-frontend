@@ -10,10 +10,12 @@ class ListView extends Component {
       <Container>
         <Row>
           <Col sm="12">
-            <h1 className="title">B</h1>
+            <h1 className="title">A</h1>
           </Col>
           <Col sm="12">
-            <ItemView />
+            {this.props.list.map(item => {
+              return <ItemView item={item} />;
+            })}
           </Col>
         </Row>
       </Container>

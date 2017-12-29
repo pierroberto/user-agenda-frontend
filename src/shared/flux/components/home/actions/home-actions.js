@@ -4,9 +4,15 @@ export default class HomeActions {
   test() {
     return {
       type: ACTION.TEST,
-      payload: new Promise((resolve) => {
+      payload: new Promise(resolve => {
         resolve([{ info: 'from server' }]);
       }),
+    };
+  }
+  setList(list) {
+    return {
+      type: ACTION.SETLIST,
+      list,
     };
   }
 }

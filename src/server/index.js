@@ -55,7 +55,6 @@ function normalizePort(val) {
 const port = normalizePort(process.env.PORT || '12345');
 console.log('PORt', port);
 
-
 /** @namespace process.env.WEBPACK_DEV */
 if (process.env.NODE_ENV !== 'production' || process.env.WEBPACK_DEV) {
   const httpProxy = require('http-proxy');
@@ -66,9 +65,7 @@ if (process.env.NODE_ENV !== 'production' || process.env.WEBPACK_DEV) {
     });
   });
 } else {
-  app.use('/static', express.static(path.resolve(
-    path.join(__dirname, '..', 'client/public/')
-  )));
+  app.use('/static', express.static(path.resolve(path.join(__dirname, '..', 'client/public/'))));
 }
 
 app.use(helmet());
@@ -86,29 +83,22 @@ app.use((req, res, next) => {
         return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
         let HTML = '';
-        const actions = renderProps.components.reduce((actions, component) => (
-          actions.concat(component.getActions ?
-            component.getActions(renderProps.params, location.query) :
-            [])
-        ), []);
+        const actions = renderProps.components.reduce((actions, component) => actions.concat(component.getActions ? component.getActions(renderProps.params, location.query) : []), []);
 
-
-        Promise.all(actions.map(req.store.dispatch))
-          .then(() => {
-            try {
-              HTML = renderToString(
-                <Provider store={req.store}>
-                  <RouterContext {...renderProps} />
-                </Provider>
-              );
-              HTML = renderToStaticMarkup(<Layout store={req.store}>{HTML}</Layout>);
-            } catch (err) {
-              err.status = 500;
-              return next(err);
-            }
-            return res.status(200).send(
-              `<!DOCTYPE html> ${HTML}`);
-          });
+        Promise.all(actions.map(req.store.dispatch)).then(() => {
+          try {
+            HTML = renderToString(
+              <Provider store={req.store}>
+                <RouterContext {...renderProps} />
+              </Provider>
+            );
+            HTML = renderToStaticMarkup(<Layout store={req.store}>{HTML}</Layout>);
+          } catch (err) {
+            err.status = 500;
+            return next(err);
+          }
+          return res.status(200).send(`<!DOCTYPE html> ${HTML}`);
+        });
         return null;
       }
       const err = new Error('no page found');
@@ -164,7 +154,6 @@ app.set('port', port);
 
 const server = http.createServer(app);
 
-
 /**
  * Event listener for HTTP server "error" event.
  */
@@ -197,13 +186,10 @@ function onError(error) {
 
 function onListening() {
   const addr = server.address();
-  const bind = typeof addr === 'string'
-    ? `pipe ${addr}`
-    : `port ${addr.port}`;
+  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
 
   console.log(`Listening on ${bind}`);
 }
-
 
 /**
  * Listen on provided port, on all network interfaces.

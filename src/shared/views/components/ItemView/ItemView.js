@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'flux';
 import { Container, Row, Col, Media } from 'reactstrap';
-import './ItemView.scss';
 
 class ItemView extends Component {
   render() {
+    console.log('props', this.props);
     return (
       <Container className="item">
         <Col md="9">
           <Media>
             <Media left href="#">
-              <Media object src="./dist/shared/views/components/ItemView/user.png" alt="Generic placeholder image" />
+              <Media object src={this.props.item.picture} alt="Generic placeholder image" />
             </Media>
             <Media body>
-              <Media heading>Bob Parker</Media>
-              00393891561742
+              <Media heading>
+                {this.props.item.first} {this.props.item.last}
+              </Media>
+              {this.props.item.cell}
             </Media>
           </Media>
         </Col>
