@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'flux';
 import { Container, Row, Col, Media } from 'reactstrap';
+import FontAwesome from 'react-fontawesome';
+import './ItemView.scss';
 
 class ItemView extends Component {
   render() {
-    console.log('props', this.props);
     return (
-      <Container className="item">
+      <Container className="item" className="wrapper">
         <Col md="9">
           <Media>
             <Media left href="#">
@@ -21,7 +22,10 @@ class ItemView extends Component {
             </Media>
           </Media>
         </Col>
-        <Col md="3">icon1 icon2</Col>
+        <Col md="3">
+          hello
+          <FontAwesome name="rocket" size="2x" />
+        </Col>
       </Container>
     );
   }

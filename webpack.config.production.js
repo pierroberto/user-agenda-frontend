@@ -52,6 +52,10 @@ module.exports = {
           "style-loader",
           "css-loader!sass-loader"
         )
+      },
+      {
+        test: /\.(svg|woff|woff2|ttf|eot|otf)([\?]?.*)$/,
+        loader: "file-loader?name=assets/fonts/[name].[ext]"
       }
     ]
   },
@@ -63,4 +67,3 @@ module.exports = {
     extensions: ["", ".js", ".jsx"]
   }
 };
-

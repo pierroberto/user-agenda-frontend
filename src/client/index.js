@@ -10,6 +10,7 @@ import { fromJS } from 'immutable';
 
 require('views/styles/main.scss');
 require('react-bootstrap/');
+import 'font-awesome/css/font-awesome.css';
 
 function run() {
   const element = document.getElementById('initial-state');
@@ -18,9 +19,9 @@ function run() {
   const store = createStore(fromJS(initialState));
   window.test = () => store.getState();
   const routes = getRoutes(store.getState());
-  match(({ routes, location }), () => {
+  match({ routes, location }, () => {
     render(
-      <Provider store={store} >
+      <Provider store={store}>
         <Router children={routes} history={browserHistory} />
       </Provider>,
       document.getElementById('react-app')
@@ -33,4 +34,3 @@ if (['complete', 'loaded', 'interactive'].indexOf(document.readyState) !== -1 &&
 } else {
   document.addEventListener('DOMContentLoaded', run, false);
 }
-
