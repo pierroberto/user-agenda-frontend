@@ -23,8 +23,8 @@ class ItemView extends Component {
           </Media>
         </Col>
         <Col md="3">
-          hello
-          <FontAwesome name="rocket" size="2x" />
+          <FontAwesome name="trash" size="2x" />
+          <FontAwesome name="pencil-square-o" size="2x" />
         </Col>
       </Container>
     );
