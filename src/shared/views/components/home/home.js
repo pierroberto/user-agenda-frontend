@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'flux';
 import ListView from '../ListView/ListView';
+import ItemDetails from '../ItemDetails/ItemDetails';
 import { Container, Row, Col } from 'reactstrap';
 import 'isomorphic-fetch';
 
@@ -29,12 +30,16 @@ class Home extends Component {
       });
   };
 
+  trigger = data => {
+    console.log('trigger');
+    this.props.dispatch(new Actions().Home.edit(data));
+  };
+
   getUser = e => {
+    console.log('getting user with id', e.target.id);
     return fetch(`http://localhost:8000/user/${e.target.id}`)
       .then(rawData => rawData.json())
-      .then(user => {
-        console.log('user', user);
-      });
+      .then(user => user);
   };
 
   getList = () => {
@@ -66,23 +71,24 @@ class Home extends Component {
     });
   };
 
-  trigger = () => {
-    console.log('triggering', new Actions().Home.setList());
-    return this.props.dispatch(new Actions().Home.setList());
-  };
-
   componentDidMount() {
     this.renderList();
   }
   render() {
+    console.log('rendering...');
     if (!this.props.list) return null;
     return (
       <div className="home">
         <Container>
           <h1 className="home__title">My Agenda</h1>
-          {this.props.list.map(listByLetter => {
-            return <ListView list={listByLetter} getUser={this.getUser} delUser={this.delUser} />;
-          })}
+          <button onClick={() => this.trigger({ data: 'hello' })}>hello</button>
+          {this.props.edit ? (
+            <ItemDetails details={this.props.edit} />
+          ) : (
+            this.props.list.map(listByLetter => {
+              return <ListView list={listByLetter} getUser={this.getUser} delUser={this.delUser} />;
+            })
+          )}
         </Container>
       </div>
     );
@@ -92,6 +98,7 @@ class Home extends Component {
 function stateToProps(state) {
   return {
     list: state.get('home').list,
+    edit: state.get('home').edit,
   };
 }
 

@@ -6,6 +6,7 @@ import ACTIONS from './constants';
 export const INITIAL_STATE = Map({
   test: Map(),
   setList: [],
+  edit: { data: null },
 });
 
 export default {

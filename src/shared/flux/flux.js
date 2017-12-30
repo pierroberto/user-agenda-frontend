@@ -12,6 +12,9 @@ export class Actions {
   get SetList() {
     return new Home.Actions(list);
   }
+  get edit() {
+    return new Home.Actions(data);
+  }
 }
 
 export function reducers(previousState, action) {

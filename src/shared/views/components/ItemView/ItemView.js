@@ -4,13 +4,16 @@ import { Actions } from 'flux';
 import { Container, Row, Col, Media } from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
 import './ItemView.scss';
-import ItemDetails from '../ItemDetails/ItemDetails';
 
 class ItemView extends Component {
+  showDetails = async e => {
+    const user = await this.props.getUser(e);
+    this.props.dispatch(new Actions().Home.edit(user));
+  };
   render() {
     return (
       <Container className="item" className="wrapper">
-        <Col md="9">
+        <Col md="9" id={this.props.item.id} onClick={e => this.showDetails(e)}>
           <Media>
             <Media left href="#">
               <Media object src={this.props.item.picture} alt="Generic placeholder image" />
@@ -25,7 +28,6 @@ class ItemView extends Component {
         </Col>
         <Col md="3">
           <FontAwesome name="trash" size="2x" id={this.props.item.id} onClick={e => this.props.delUser(e)} />
-          <FontAwesome name="pencil-square-o" size="2x" />
         </Col>
       </Container>
     );

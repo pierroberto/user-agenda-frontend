@@ -11,6 +11,11 @@ export default function (state = INITIAL_STATE, action = {}) {
         ...state,
         list: [...action.list],
       };
+    case ACTION.EDIT:
+      return {
+        ...state,
+        edit: { data: action.edit.data },
+      };
     default:
       return state;
   }

@@ -15,4 +15,11 @@ export default class HomeActions {
       list,
     };
   }
+
+  edit(data) {
+    return {
+      type: ACTION.EDIT,
+      edit: { data },
+    };
+  }
 }
