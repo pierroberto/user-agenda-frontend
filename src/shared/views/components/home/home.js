@@ -18,6 +18,25 @@ class Home extends Component {
     return [new Actions().Home.test()];
   }
 
+  delUser = e => {
+    return fetch(`http://localhost:8000/deluser/${e.target.id}`, {
+      method: 'DELETE',
+      mode: 'cors',
+    })
+      .then(rawData => rawData.json())
+      .then(user => {
+        this.props.dispatch(this.renderList());
+      });
+  };
+
+  getUser = e => {
+    return fetch(`http://localhost:8000/user/${e.target.id}`)
+      .then(rawData => rawData.json())
+      .then(user => {
+        console.log('user', user);
+      });
+  };
+
   getList = () => {
     return fetch('http://localhost:8000/users')
       .then(rawData => rawData.json())
@@ -62,7 +81,7 @@ class Home extends Component {
         <Container>
           <h1 className="home__title">My Agenda</h1>
           {this.props.list.map(listByLetter => {
-            return <ListView list={listByLetter} />;
+            return <ListView list={listByLetter} getUser={this.getUser} delUser={this.delUser} />;
           })}
         </Container>
       </div>
