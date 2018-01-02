@@ -35,11 +35,6 @@ class Home extends Component {
       });
   };
 
-  trigger = data => {
-    console.log('trigger');
-    this.props.dispatch(new Actions().Home.edit(data));
-  };
-
   addUser = data => {
     fetch('http://localhost:8000/adduser', {
       method: 'post',
