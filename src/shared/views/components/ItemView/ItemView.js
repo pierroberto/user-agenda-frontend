@@ -6,16 +6,12 @@ import FontAwesome from 'react-fontawesome';
 import './ItemView.scss';
 
 class ItemView extends Component {
-  showDetails = async e => {
-    const user = await this.props.getUser(e);
-    this.props.dispatch(new Actions().Home.edit(user));
-  };
   render() {
     return (
       <Container className="item" className="wrapper">
-        <Col md="9" id={this.props.item.id} onClick={e => this.showDetails(e)}>
+        <Col md="9" id={this.props.item.id}>
           <Media>
-            <Media left href="#">
+            <Media left>
               <Media object src={this.props.item.picture} alt="Generic placeholder image" />
             </Media>
             <Media body>

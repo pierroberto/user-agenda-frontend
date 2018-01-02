@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'flux';
 import ListView from '../ListView/ListView';
 import ItemDetails from '../ItemDetails/ItemDetails';
+import FontAwesome from 'react-fontawesome';
 import { Container, Row, Col } from 'reactstrap';
 import 'isomorphic-fetch';
 const randomId = require('uuid/v4');
@@ -18,6 +19,10 @@ class Home extends Component {
   static getActions() {
     return [new Actions().Home.test()];
   }
+
+  newUser = async e => {
+    this.props.dispatch(new Actions().Home.edit(true));
+  };
 
   delUser = e => {
     return fetch(`http://localhost:8000/deluser/${e.target.id}`, {
@@ -86,9 +91,12 @@ class Home extends Component {
     this.renderList();
   }
   render() {
+    console.log('props', this.props.edit);
     if (!this.props.list) return null;
+
     return (
       <div className="home">
+        <FontAwesome name="plus" size="3x" className="home__add" onClick={() => this.newUser()} />
         <Container>
           <h1 className="home__title">My Agenda</h1>
           {this.props.edit ? (

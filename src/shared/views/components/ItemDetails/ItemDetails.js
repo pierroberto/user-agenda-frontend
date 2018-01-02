@@ -11,6 +11,9 @@ class ItemDetails extends Component {
     super(props);
     this.data = {};
   }
+  goBack() {
+    window.location.href = 'http://localhost:12345';
+  }
   setFirst = e => {
     this.data = {
       ...this.data,
@@ -105,7 +108,7 @@ class ItemDetails extends Component {
             <InputGroupAddon>
               <FontAwesome name="male" />
             </InputGroupAddon>
-            <Input type="text" name="username" onChange={this.setUsername} required />
+            <Input type="text" name="username" onChange={this.setUsername} value={'hello2'} required />
           </InputGroup>
         </FormGroup>
         <FormGroup>
@@ -166,7 +169,6 @@ class ItemDetails extends Component {
             <Input type="text" name="cell" onChange={this.setCell} required />
           </InputGroup>
         </FormGroup>
-
         <FormGroup>
           <Label>Date of Birth</Label>
           <InputGroup>
@@ -181,6 +183,7 @@ class ItemDetails extends Component {
           <Input type="file" name="picture" onChange={this.setPicture} required />
         </FormGroup>
         <Button type="submit">Submit</Button>
+        <Button onClick={this.goBack}>Back</Button>
       </Form>
     );
   }
