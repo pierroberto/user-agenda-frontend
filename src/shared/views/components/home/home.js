@@ -91,7 +91,6 @@ class Home extends Component {
       <div className="home">
         <Container>
           <h1 className="home__title">My Agenda</h1>
-          <button onClick={() => this.trigger({ data: 'hello' })}>hello</button>
           {this.props.edit ? (
             <ItemDetails details={this.props.edit} addUser={this.addUser} />
           ) : (

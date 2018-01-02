@@ -77,6 +77,7 @@ class ItemDetails extends Component {
     return (
       <Form onSubmit={this.submitData}>
         <FormGroup>
+          <Label>Title</Label>
           <InputGroup>
             <InputGroupAddon>
               <FontAwesome name="male" />
@@ -99,32 +100,62 @@ class ItemDetails extends Component {
         </FormGroup>
         <FormGroup>
           <Label>Last name</Label>
-          <Input type="text" name="last" onChange={this.setLast} required />
+          <InputGroup>
+            <InputGroupAddon>
+              <FontAwesome name="pencil-square-o" />
+            </InputGroupAddon>
+            <Input type="text" name="last" onChange={this.setLast} required />
+          </InputGroup>
         </FormGroup>
         <FormGroup>
           <Label>Gender</Label>
-          <Input type="select" name="gender" onChange={this.setGender} required>
-            <option>Choose</option>
-            <option>Male</option>
-            <option>Female</option>
-          </Input>
+          <InputGroup>
+            <InputGroupAddon>
+              <FontAwesome name="intersex" />
+            </InputGroupAddon>
+            <Input type="select" name="gender" onChange={this.setGender} required>
+              <option>Choose</option>
+              <option>Male</option>
+              <option>Female</option>
+            </Input>
+          </InputGroup>
         </FormGroup>
         <FormGroup>
           <Label>Email</Label>
-          <Input type="email" name="email" onChange={this.setEmail} required />
+          <InputGroup>
+            <InputGroupAddon>
+              <FontAwesome name="envelope" />
+            </InputGroupAddon>
+            <Input type="email" name="email" onChange={this.setEmail} required />
+          </InputGroup>
         </FormGroup>
         <FormGroup>
           <Label>Phone</Label>
-          <Input type="text" name="phone" onChange={this.setPhone} required />
+          <InputGroup>
+            <InputGroupAddon>
+              <FontAwesome name="phone" />
+            </InputGroupAddon>
+            <Input type="text" name="phone" onChange={this.setPhone} required />
+          </InputGroup>
         </FormGroup>
         <FormGroup>
           <Label>Cell.</Label>
-          <Input type="text" name="cell" onChange={this.setCell} required />
+          <InputGroup>
+            <InputGroupAddon>
+              <FontAwesome name="phone" />
+            </InputGroupAddon>
+            <Input type="text" name="cell" onChange={this.setCell} required />
+          </InputGroup>
         </FormGroup>
 
         <FormGroup>
           <Label>Date of Birth</Label>
-          <Input type="date" name="dob" onChange={this.setDob} required />
+          <InputGroup>
+            <InputGroupAddon>
+              <FontAwesome name="birthday-cake" />
+            </InputGroupAddon>
+            <Input type="date" name="dob" onChange={this.setDob} required />
+          </InputGroup>
         </FormGroup>
         <FormGroup>
           <Label>Picture</Label>
