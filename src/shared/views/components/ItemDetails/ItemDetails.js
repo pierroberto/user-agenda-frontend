@@ -14,7 +14,7 @@ class ItemDetails extends Component {
   setFirst = e => {
     this.data = {
       ...this.data,
-      first: e.target.value,
+      first: e.target.value.toLowerCase(),
     };
   };
   setLast = e => {
@@ -59,10 +59,17 @@ class ItemDetails extends Component {
       title: e.target.value,
     };
   };
-  setDob = e => {
+  setUsername = e => {
     this.data = {
       ...this.data,
-      dob: e.target.value,
+      username: e.target.value,
+    };
+  };
+  setDob = e => {
+    const date = new Date(e.target.value).getTime();
+    this.data = {
+      ...this.data,
+      dob: date,
     };
   };
   submitData = e => {
@@ -73,7 +80,6 @@ class ItemDetails extends Component {
     this.props.addUser(this.data);
   };
   render() {
-    console.log('props', this.props);
     return (
       <Form onSubmit={this.submitData}>
         <FormGroup>
@@ -84,9 +90,22 @@ class ItemDetails extends Component {
             </InputGroupAddon>
             <Input type="select" name="title" onChange={this.setTitle} required>
               <option>Choose</option>
-              <option>Mr.</option>
-              <option>Mrs.</option>
+              <option>mr</option>
+              <option>ms</option>
+              <option>mrs</option>
+              <option>mademoiselle</option>
+              <option>monsieur</option>
+              <option>miss</option>
             </Input>
+          </InputGroup>
+        </FormGroup>
+        <FormGroup>
+          <Label>Username</Label>
+          <InputGroup>
+            <InputGroupAddon>
+              <FontAwesome name="male" />
+            </InputGroupAddon>
+            <Input type="text" name="username" onChange={this.setUsername} required />
           </InputGroup>
         </FormGroup>
         <FormGroup>
@@ -170,7 +189,5 @@ class ItemDetails extends Component {
 function stateToProps(state) {
   return {};
 }
-
-/* <FontAwesome name="pencil-square-o" size="2x" /> */
 
 export default connect(stateToProps)(ItemDetails);
