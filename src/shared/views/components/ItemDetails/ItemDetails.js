@@ -84,16 +84,18 @@ class ItemDetails extends Component {
   };
   render() {
     const user = this.props.details.data;
+    this.data = user;
+    console.log('date', Moment(user.dob).format('YYYY-MM-DD'));
     return (
       <Form onSubmit={this.submitData}>
         <Label>Here you can view contact's details and edit it</Label>
         <FormGroup>
-          <Label>Title</Label>
+          <Label>Title {user.title}</Label>
           <InputGroup>
             <InputGroupAddon>
               <FontAwesome name="male" />
             </InputGroupAddon>
-            <Input type="select" name="title" onChange={this.setTitle} value={user.title} required>
+            <Input type="select" name="title" onChange={this.setTitle} value={user.title}>
               <option>Choose</option>
               <option>mr</option>
               <option>ms</option>
@@ -105,39 +107,39 @@ class ItemDetails extends Component {
           </InputGroup>
         </FormGroup>
         <FormGroup>
-          <Label>Username</Label>
+          <Label>Username {user.username}</Label>
           <InputGroup>
             <InputGroupAddon>
               <FontAwesome name="male" />
             </InputGroupAddon>
-            <Input type="text" name="username" onChange={this.setUsername} placeholder={user.username} required />
+            <Input type="text" name="username" onChange={this.setUsername} placeholder={user.username} />
           </InputGroup>
         </FormGroup>
         <FormGroup>
-          <Label>First name</Label>
+          <Label>First name {user.first}</Label>
           <InputGroup>
             <InputGroupAddon>
               <FontAwesome name="pencil-square-o" />
             </InputGroupAddon>
-            <Input type="text" name="first" onChange={this.setFirst} placeholder={user.first} required />
+            <Input type="text" name="first" onChange={this.setFirst} placeholder={user.first} />
           </InputGroup>
         </FormGroup>
         <FormGroup>
-          <Label>Last name</Label>
+          <Label>Last name {user.last}</Label>
           <InputGroup>
             <InputGroupAddon>
               <FontAwesome name="pencil-square-o" />
             </InputGroupAddon>
-            <Input type="text" name="last" onChange={this.setLast} placeholder={user.last} required />
+            <Input type="text" name="last" onChange={this.setLast} placeholder={user.last} />
           </InputGroup>
         </FormGroup>
         <FormGroup>
-          <Label>Gender</Label>
+          <Label>Gender {user.gender}</Label>
           <InputGroup>
             <InputGroupAddon>
               <FontAwesome name="intersex" />
             </InputGroupAddon>
-            <Input type="select" name="gender" onChange={this.setGender} value={user.gender} required>
+            <Input type="select" name="gender" onChange={this.setGender} value={user.gender}>
               <option>Choose</option>
               <option>male</option>
               <option>female</option>
@@ -145,47 +147,57 @@ class ItemDetails extends Component {
           </InputGroup>
         </FormGroup>
         <FormGroup>
-          <Label>Email</Label>
+          <Label>Email {user.email}</Label>
           <InputGroup>
             <InputGroupAddon>
               <FontAwesome name="envelope" />
             </InputGroupAddon>
-            <Input type="email" name="email" onChange={this.setEmail} placeholder={user.email} required />
+            <Input type="email" name="email" onChange={this.setEmail} placeholder={user.email} />
           </InputGroup>
         </FormGroup>
         <FormGroup>
-          <Label>Phone</Label>
+          <Label>Phone {user.phone}</Label>
           <InputGroup>
             <InputGroupAddon>
               <FontAwesome name="phone" />
             </InputGroupAddon>
-            <Input type="text" name="phone" onChange={this.setPhone} placeholder={user.phone} required />
+            <Input type="text" name="phone" onChange={this.setPhone} placeholder={user.phone} />
           </InputGroup>
         </FormGroup>
         <FormGroup>
-          <Label>Cell.</Label>
+          <Label>Cell. {user.cell}</Label>
           <InputGroup>
             <InputGroupAddon>
               <FontAwesome name="phone" />
             </InputGroupAddon>
-            <Input type="text" name="cell" onChange={this.setCell} placeholder={user.cell} required />
+            <Input type="text" name="cell" onChange={this.setCell} placeholder={user.cell} />
           </InputGroup>
         </FormGroup>
         <FormGroup>
-          <Label>Date of Birth</Label>
+          <Label>Date of Birth {Moment(user.dob).format('YYYY-MM-DD')}</Label>
           <InputGroup>
             <InputGroupAddon>
               <FontAwesome name="birthday-cake" />
             </InputGroupAddon>
-            <Input type="date" name="dob" onChange={this.setDob} value={Moment(user.dob).format('YYYY-MM-DD')} required />
+            <Input type="date" name="dob" onChange={this.setDob} placeholder={Moment(user.dob).format('YYYY-MM-DD')} />
           </InputGroup>
         </FormGroup>
         <FormGroup>
           <Label>Picture</Label>
-          <Input type="file" name="picture" onChange={this.setPicture} placeholder={user.picture} required />
+          <Input type="file" name="picture" onChange={this.setPicture} placeholder={user.picture} />
         </FormGroup>
-        {this.props.details.data.first ? <Button type="submit">Update</Button> : <Button type="submit">Submit</Button>}
-        <Button onClick={this.goBack}>Back</Button>
+        {this.props.details.data.first ? (
+          <Button className="form__button" type="submit">
+            Update
+          </Button>
+        ) : (
+          <Button className="form__button" type="submit">
+            Submit
+          </Button>
+        )}
+        <Button className="form__button" onClick={this.goBack}>
+          Back
+        </Button>
       </Form>
     );
   }

@@ -8,10 +8,10 @@ import './ListView.scss';
 class ListView extends Component {
   render() {
     return (
-      <Container className="wrapperListView">
+      <Container className="listView">
         <Row>
           <Col sm="12">
-            <h1 className="title">{this.props.letter.toUpperCase()}</h1>
+            <h1 className="listView__title">{this.props.letter.toUpperCase()}</h1>
           </Col>
           <Col sm="12">
             {this.props.list.map(item => {

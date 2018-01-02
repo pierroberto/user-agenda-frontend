@@ -13,7 +13,7 @@ class ItemView extends Component {
   };
   render() {
     return (
-      <Container className="item" className="wrapperItemView">
+      <Container className="item">
         <Col md="9" id={this.props.item.id}>
           <Media>
             <Media left>
@@ -28,8 +28,12 @@ class ItemView extends Component {
           </Media>
         </Col>
         <Col md="3">
-          <FontAwesome name="trash" size="2x" id={this.props.item.id} onClick={e => this.props.delUser(e)} />
-          <FontAwesome name="pencil" size="2x" id={this.props.item.id} onClick={e => this.viewDetails(e)} />
+          <div className="item__iconContainer">
+            <FontAwesome className="item__iconTrash" name="trash" size="2x" id={this.props.item.id} onClick={e => this.props.delUser(e)} />
+          </div>
+          <div className="item__iconContainer">
+            <FontAwesome className="item__iconPencil" name="pencil" size="2x" id={this.props.item.id} onClick={e => this.viewDetails(e)} />
+          </div>
         </Col>
       </Container>
     );

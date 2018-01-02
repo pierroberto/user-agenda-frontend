@@ -1,7 +1,34 @@
-.wrapperItemView {
+.item {
   margin: 20px 0;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 img {
   border-radius: 100px;
+}
+
+.item__iconContainer {
+  background-color: #fff;
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+  border-radius: 100px;
+  border: 1px solid white;
+}
+
+.item__iconPencil {
+  color: #00a9ff;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item__iconTrash {
+  color: #00a9ff;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -53,7 +53,6 @@ class Home extends Component {
 
   getUser = e => {
     const id = Number(e.target.id);
-    console.log('getting user with id', id);
     return fetch(`http://localhost:8000/user/${id}`)
       .then(rawData => rawData.json())
       .then(user => user);
