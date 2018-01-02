@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'flux';
 import { Container, Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroupAddon } from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
-
+import Moment from 'moment';
 import './ItemDetails.scss';
 
 class ItemDetails extends Component {
@@ -83,15 +83,17 @@ class ItemDetails extends Component {
     this.props.addUser(this.data);
   };
   render() {
+    const user = this.props.details.data;
     return (
       <Form onSubmit={this.submitData}>
+        <Label>Here you can view contact's details and edit it</Label>
         <FormGroup>
           <Label>Title</Label>
           <InputGroup>
             <InputGroupAddon>
               <FontAwesome name="male" />
             </InputGroupAddon>
-            <Input type="select" name="title" onChange={this.setTitle} required>
+            <Input type="select" name="title" onChange={this.setTitle} value={user.title} required>
               <option>Choose</option>
               <option>mr</option>
               <option>ms</option>
@@ -108,7 +110,7 @@ class ItemDetails extends Component {
             <InputGroupAddon>
               <FontAwesome name="male" />
             </InputGroupAddon>
-            <Input type="text" name="username" onChange={this.setUsername} value={'hello2'} required />
+            <Input type="text" name="username" onChange={this.setUsername} placeholder={user.username} required />
           </InputGroup>
         </FormGroup>
         <FormGroup>
@@ -117,7 +119,7 @@ class ItemDetails extends Component {
             <InputGroupAddon>
               <FontAwesome name="pencil-square-o" />
             </InputGroupAddon>
-            <Input type="text" name="first" onChange={this.setFirst} required />
+            <Input type="text" name="first" onChange={this.setFirst} placeholder={user.first} required />
           </InputGroup>
         </FormGroup>
         <FormGroup>
@@ -126,7 +128,7 @@ class ItemDetails extends Component {
             <InputGroupAddon>
               <FontAwesome name="pencil-square-o" />
             </InputGroupAddon>
-            <Input type="text" name="last" onChange={this.setLast} required />
+            <Input type="text" name="last" onChange={this.setLast} placeholder={user.last} required />
           </InputGroup>
         </FormGroup>
         <FormGroup>
@@ -135,10 +137,10 @@ class ItemDetails extends Component {
             <InputGroupAddon>
               <FontAwesome name="intersex" />
             </InputGroupAddon>
-            <Input type="select" name="gender" onChange={this.setGender} required>
+            <Input type="select" name="gender" onChange={this.setGender} value={user.gender} required>
               <option>Choose</option>
-              <option>Male</option>
-              <option>Female</option>
+              <option>male</option>
+              <option>female</option>
             </Input>
           </InputGroup>
         </FormGroup>
@@ -148,7 +150,7 @@ class ItemDetails extends Component {
             <InputGroupAddon>
               <FontAwesome name="envelope" />
             </InputGroupAddon>
-            <Input type="email" name="email" onChange={this.setEmail} required />
+            <Input type="email" name="email" onChange={this.setEmail} placeholder={user.email} required />
           </InputGroup>
         </FormGroup>
         <FormGroup>
@@ -157,7 +159,7 @@ class ItemDetails extends Component {
             <InputGroupAddon>
               <FontAwesome name="phone" />
             </InputGroupAddon>
-            <Input type="text" name="phone" onChange={this.setPhone} required />
+            <Input type="text" name="phone" onChange={this.setPhone} placeholder={user.phone} required />
           </InputGroup>
         </FormGroup>
         <FormGroup>
@@ -166,7 +168,7 @@ class ItemDetails extends Component {
             <InputGroupAddon>
               <FontAwesome name="phone" />
             </InputGroupAddon>
-            <Input type="text" name="cell" onChange={this.setCell} required />
+            <Input type="text" name="cell" onChange={this.setCell} placeholder={user.cell} required />
           </InputGroup>
         </FormGroup>
         <FormGroup>
@@ -175,14 +177,14 @@ class ItemDetails extends Component {
             <InputGroupAddon>
               <FontAwesome name="birthday-cake" />
             </InputGroupAddon>
-            <Input type="date" name="dob" onChange={this.setDob} required />
+            <Input type="date" name="dob" onChange={this.setDob} value={Moment(user.dob).format('YYYY-MM-DD')} required />
           </InputGroup>
         </FormGroup>
         <FormGroup>
           <Label>Picture</Label>
-          <Input type="file" name="picture" onChange={this.setPicture} required />
+          <Input type="file" name="picture" onChange={this.setPicture} placeholder={user.picture} required />
         </FormGroup>
-        <Button type="submit">Submit</Button>
+        {this.props.details.data.first ? <Button type="submit">Update</Button> : <Button type="submit">Submit</Button>}
         <Button onClick={this.goBack}>Back</Button>
       </Form>
     );

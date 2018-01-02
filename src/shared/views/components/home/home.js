@@ -52,8 +52,9 @@ class Home extends Component {
   };
 
   getUser = e => {
-    console.log('getting user with id', e.target.id);
-    return fetch(`http://localhost:8000/user/${e.target.id}`)
+    const id = Number(e.target.id);
+    console.log('getting user with id', id);
+    return fetch(`http://localhost:8000/user/${id}`)
       .then(rawData => rawData.json())
       .then(user => user);
   };
@@ -91,14 +92,13 @@ class Home extends Component {
     this.renderList();
   }
   render() {
-    console.log('props', this.props.edit);
     if (!this.props.list) return null;
 
     return (
       <div className="home">
         <FontAwesome name="plus" size="3x" className="home__add" onClick={() => this.newUser()} />
         <Container>
-          <h1 className="home__title">My Agenda</h1>
+          <h1 className="home__title">My Contacts</h1>
           {this.props.edit ? (
             <ItemDetails details={this.props.edit} addUser={this.addUser} />
           ) : (
