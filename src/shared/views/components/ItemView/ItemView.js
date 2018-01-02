@@ -8,11 +8,11 @@ import './ItemView.scss';
 class ItemView extends Component {
   render() {
     return (
-      <Container className="item" className="wrapper">
+      <Container className="item" className="wrapperItemView">
         <Col md="9" id={this.props.item.id}>
           <Media>
             <Media left>
-              <Media object src={this.props.item.picture} alt="Generic placeholder image" />
+              <Media object src={this.props.item.picture} alt="Generic placeholder image" className="wrapperItemView__pic" />
             </Media>
             <Media body>
               <Media heading>

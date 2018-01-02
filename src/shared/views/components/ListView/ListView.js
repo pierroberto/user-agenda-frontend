@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { Actions } from 'flux';
 import ItemView from '../ItemView/ItemView';
 import { Container, Row, Col } from 'reactstrap';
+import './ListView.scss';
 
 class ListView extends Component {
   render() {
     return (
-      <Container>
+      <Container className="wrapperListView">
         <Row>
           <Col sm="12">
             <h1 className="title">A</h1>
