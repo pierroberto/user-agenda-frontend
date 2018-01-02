@@ -103,7 +103,7 @@ class Home extends Component {
             <ItemDetails details={this.props.edit} addUser={this.addUser} />
           ) : (
             this.props.list.map(listByLetter => {
-              return <ListView list={listByLetter} getUser={this.getUser} delUser={this.delUser} addUser={this.addUser} />;
+              return <ListView list={listByLetter} letter={listByLetter[0].first[0]} getUser={this.getUser} delUser={this.delUser} addUser={this.addUser} />;
             })
           )}
         </Container>

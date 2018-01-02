@@ -11,7 +11,7 @@ class ListView extends Component {
       <Container className="wrapperListView">
         <Row>
           <Col sm="12">
-            <h1 className="title">A</h1>
+            <h1 className="title">{this.props.letter.toUpperCase()}</h1>
           </Col>
           <Col sm="12">
             {this.props.list.map(item => {
