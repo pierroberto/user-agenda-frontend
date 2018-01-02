@@ -5,7 +5,7 @@ import ListView from '../ListView/ListView';
 import ItemDetails from '../ItemDetails/ItemDetails';
 import { Container, Row, Col } from 'reactstrap';
 import 'isomorphic-fetch';
-
+const randomId = require('uuid/v4');
 if (process.env.BROWSER) {
   require('./home.scss');
 }
@@ -33,6 +33,17 @@ class Home extends Component {
   trigger = data => {
     console.log('trigger');
     this.props.dispatch(new Actions().Home.edit(data));
+  };
+
+  addUser = data => {
+    fetch('http://localhost:8000/adduser', {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then(res => console.log('res', res));
   };
 
   getUser = e => {
@@ -75,7 +86,6 @@ class Home extends Component {
     this.renderList();
   }
   render() {
-    console.log('rendering...');
     if (!this.props.list) return null;
     return (
       <div className="home">
@@ -83,10 +93,10 @@ class Home extends Component {
           <h1 className="home__title">My Agenda</h1>
           <button onClick={() => this.trigger({ data: 'hello' })}>hello</button>
           {this.props.edit ? (
-            <ItemDetails details={this.props.edit} />
+            <ItemDetails details={this.props.edit} addUser={this.addUser} />
           ) : (
             this.props.list.map(listByLetter => {
-              return <ListView list={listByLetter} getUser={this.getUser} delUser={this.delUser} />;
+              return <ListView list={listByLetter} getUser={this.getUser} delUser={this.delUser} addUser={this.addUser} />;
             })
           )}
         </Container>

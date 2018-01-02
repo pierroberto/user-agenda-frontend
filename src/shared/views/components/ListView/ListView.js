@@ -14,7 +14,7 @@ class ListView extends Component {
           </Col>
           <Col sm="12">
             {this.props.list.map(item => {
-              return <ItemView item={item} getUser={this.props.getUser} delUser={this.props.delUser} />;
+              return <ItemView item={item} getUser={this.props.getUser} delUser={this.props.delUser} addUser={this.props.addUser} />;
             })}
           </Col>
         </Row>

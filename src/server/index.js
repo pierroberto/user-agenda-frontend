@@ -23,6 +23,7 @@ import { createStore } from 'flux/store';
 import { Provider } from 'react-redux';
 
 const app = express();
+const cors = require('cors');
 
 // view engine setup
 app.set('views', path.join('views'));
@@ -69,6 +70,7 @@ if (process.env.NODE_ENV !== 'production' || process.env.WEBPACK_DEV) {
 }
 
 app.use(helmet());
+app.use(cors());
 
 app.use((req, res, next) => {
   const location = req.url;

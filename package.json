@@ -4,13 +4,10 @@
   "private": true,
   "main": "bin/www",
   "scripts": {
-    "start":
-      "NODE_CONFIG_DIR=./dist/config NODE_ENV=production NODE_PATH=NODE_PATH:./dist/shared:./dist/server node dist/server",
+    "start": "NODE_CONFIG_DIR=./dist/config NODE_ENV=production NODE_PATH=NODE_PATH:./dist/shared:./dist/server node dist/server",
     "start:dev": "NODE_CONFIG_DIR=./src/config nodemon .",
-    "webpack":
-      "NODE_CONFIG_DIR=./src/config NODE_PATH=NODE_PATH:./src/shared:./src/server webpack-dev-server --no-info --config webpack.config.js",
-    "build:webpack":
-      "NODE_ENV=production NODE_PATH=NODE_PATH:./dist/shared:./dist/server webpack --config webpack.config.production.js --watch --progress --profile --color -p",
+    "webpack": "NODE_CONFIG_DIR=./src/config NODE_PATH=NODE_PATH:./src/shared:./src/server webpack-dev-server --no-info --config webpack.config.js",
+    "build:webpack": "NODE_ENV=production NODE_PATH=NODE_PATH:./dist/shared:./dist/server webpack --config webpack.config.production.js --watch --progress --profile --color -p",
     "build:node": "babel -s inline -D src/ -d dist",
     "build": "npm run build:node && npm run build:webpack",
     "lint": "NODE_PATH=NODE_PATH:./src/shared:./src/server  eslint src"
@@ -35,6 +32,7 @@
     "eslint-plugin-react": "^5.2.2",
     "express": "^4.14.0",
     "font-awesome": "^4.7.0",
+    "form-data": "^2.3.1",
     "helmet": "^2.1.1",
     "intl": "^1.2.4",
     "isomorphic-fetch": "^2.2.1",
@@ -58,6 +56,7 @@
     "sass-loader": "^4.0.0",
     "serve-favicon": "*",
     "source-map-support": "*",
+    "uuid": "^3.1.0",
     "webpack": "^1.13.1"
   },
   "devDependencies": {
